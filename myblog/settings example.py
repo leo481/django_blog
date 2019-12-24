@@ -25,7 +25,7 @@ SECRET_KEY = ''
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'comment',
     'likes',
     'user',
+    'notifications',
+    'my_notifications',
 ]
 
 MIDDLEWARE = [
@@ -178,3 +180,42 @@ EMAIL_SUBJECT_PREFIX = '[黄生生的博客]'
 EMAIL_USER_TLS = True
 
 CONFIRM_DAYS = 7
+
+
+ADMINS = (
+    ('admin', ''),
+)
+'''
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/django/debug.log',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+}
+'''
+
+# django-notifications-hq设置
+DJANGO_NOTIFICATIONS_CONFIG = { 
+    'USE_JSONFIELD': True,
+}

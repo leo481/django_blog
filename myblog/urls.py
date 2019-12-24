@@ -28,7 +28,7 @@ urlpatterns = [
     path('likes/', include('likes.urls')),
     path('user/', include('user.urls')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
-    path('my_notifications', views.my_notifications, name='my_notifications'),
+    path('my_notifications/', include('my_notifications.urls')),
 ]
 
 urlpatterns += static('/media/', document_root=settings.MEDIA_ROOT)

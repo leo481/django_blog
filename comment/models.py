@@ -49,6 +49,9 @@ class Comment(models.Model):
     
     def get_user(self):
         return self.user
+    
+    def get_url(self):
+        return self.content_object.get_url()
 
     # def send_mail(self):
     #     if self.parent is None:
