@@ -35,3 +35,7 @@ def home(request):
     context['yesterday_hot_data'] = yesterday_hot_data
     context['sevendays_hot_data'] = sevendays_hot_data
     return render(request, 'home.html', context=context)
+
+def my_notifications(request):
+    context = {}
+    return render(request, 'my_notifications.html', context)

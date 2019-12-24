@@ -27,7 +27,6 @@ def update_comment(request):
     # referer = request.META.get('HTTP_REFERER', '/')
     # return redirect(referer)
 
-    referer = request.META.get('HTTP_REFERER', '/')
     comment_form = CommentForm(request.POST, user=request.user)
     data = {}
     if comment_form.is_valid():
@@ -45,7 +44,7 @@ def update_comment(request):
         comment.save()
         
          # 发送邮件通知
-        comment.send_mail()
+        #comment.send_mail()
         
         data['status'] = 'SUCCESS'
         data['username'] = comment.user.get_nickname_or_username()

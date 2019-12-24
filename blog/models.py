@@ -35,4 +35,6 @@ class Blog(models.Model, ReadNumMixin):
     def get_email(self):
         return self.author.email
 
+    def get_user(self):
+        return self.author
     
