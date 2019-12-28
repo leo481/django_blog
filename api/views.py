@@ -61,6 +61,20 @@ class BlogContent(generics.GenericAPIView):
 
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from .throttles import MyThrottle
+from rest_framework.pagination import PageNumberPagination, CursorPagination
+
+class MyPageNumber(PageNumberPagination):
+    page_size = 2  # 每页显示多少条
+    page_size_query_param = 'size'  # URL中每页显示条数的参数
+    page_query_param = 'page'  # URL中页码的参数
+    max_page_size = None  # 最大页码数限制
+
+# 加密分页
+class MyCursorPagination(CursorPagination):
+    cursor_query_param = 'cursor'
+    page_size = 1
+    ordering = '-id'  # 重写要排序的字段
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
@@ -70,6 +84,10 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly,)
+    # 访问速率限制
+    # throttle_classes = (MyThrottle,)
+    # 自定义分页器
+    # pagination_class = MyPageNumber
 
     @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
     def contenthtml(self, request, *args, **kwargs):
