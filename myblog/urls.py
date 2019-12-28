@@ -29,6 +29,8 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
     path('my_notifications/', include('my_notifications.urls')),
+    path('api/', include('api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 urlpatterns += static('/media/', document_root=settings.MEDIA_ROOT)

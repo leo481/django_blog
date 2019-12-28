@@ -18,7 +18,7 @@ class Blog(models.Model, ReadNumMixin):
     title = models.CharField(max_length=50)
     blog_type = models.ForeignKey(BlogType, on_delete=models.CASCADE)
     content = RichTextUploadingField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blogs')
     read_details = GenericRelation(ReadDetail)
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)

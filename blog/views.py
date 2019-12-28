@@ -50,7 +50,6 @@ def blog_detail(request, blog_pk):
     response.set_cookie(read_cookie_key, 'true')
     return response
 
-
 def blogs_with_type(request, blog_type_pk):
     page_num = request.GET.get('page', 1)
     blog_type = get_object_or_404(BlogType, pk=blog_type_pk)
